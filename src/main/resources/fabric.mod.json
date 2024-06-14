@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "nccl",
+  "version": "${version}",
+  "name": "NoCommandChatLimit",
+  "description": "A simple mod that removes the chat limit when typing commands",
+  "authors": [
+    "RamGames"
+  ],
+  "contact": {
+    "repo": "https://github.com/RamGemes/NoCommandChatLimit"
+  },
+  "license": "MIT",
+  "icon": "assets/nccl/icon.png",
+  "environment": "client",
+  "mixins": [
+    "nccl.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": ">=1.19.3"
+  }
+}
