@@ -10,9 +10,9 @@ import org.spongepowered.asm.mixin.injection.At;
 public class StringHelperMixin {
 
     @WrapOperation(method = "trimChatMessage", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/StringUtil;truncateStringIfNecessary(Ljava/lang/String;IZ)Ljava/lang/String;"))
-    private static String removeTruncationLimitIfCommand(String text, int maxLength, boolean addEllipsis, Operation<String> original) {
-        if(text.startsWith("/")) return text;
-        return original.call(text, maxLength, addEllipsis);
+    private static String removeTruncationLimitIfCommand(String s, int maxLength, boolean addDotDotDotIfTruncated, Operation<String> original) {
+        if(s.startsWith("/")) return s;
+        return original.call(s, maxLength, addDotDotDotIfTruncated);
     }
 
 }

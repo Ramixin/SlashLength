@@ -2,6 +2,6 @@ package net.ramixin.slashlength;
 
 public interface TextFieldWidgetDuck {
 
-    void slashlength$setAsChatBox();
+    void slashLength$setAsChatBox();
 
 }

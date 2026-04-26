@@ -19,20 +19,20 @@ public class ChatScreenMixin {
     @Inject(method = "init", at = @At("TAIL"))
     private void markTextWidgetAsChatBox(CallbackInfo ci) {
         if(this.input != null)
-            ((TextFieldWidgetDuck)this.input).slashlength$setAsChatBox();
+            ((TextFieldWidgetDuck)this.input).slashLength$setAsChatBox();
     }
 
     @Inject(method = "onEdited", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/CommandSuggestions;setAllowSuggestions(Z)V"))
-    private void modifyChatLengthIfCommand(String chatText, CallbackInfo ci) {
+    private void modifyChatLengthIfCommand(String value, CallbackInfo ci) {
         if(this.input.getValue().startsWith("/")) this.input.setMaxLength(Integer.MAX_VALUE);
         else this.input.setMaxLength(256);
     }
 
     @WrapOperation(method = "moveInHistory", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/EditBox;setValue(Ljava/lang/String;)V"))
-    private void allowCommandsInHistoryToPassLimit(EditBox instance, String text, Operation<Void> original) {
-        if(text.startsWith("/")) instance.setMaxLength(Integer.MAX_VALUE);
+    private void allowCommandsInHistoryToPassLimit(EditBox instance, String value, Operation<Void> original) {
+        if(value.startsWith("/")) instance.setMaxLength(Integer.MAX_VALUE);
         else instance.setMaxLength(256);
-        original.call(instance, text);
+        original.call(instance, value);
     }
 
 }
